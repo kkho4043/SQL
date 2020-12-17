@@ -58,9 +58,9 @@ SELECT
         salary 월급,
         NVL(commission_pct,0) 커미션퍼센트
 FROM employees
-where salary >= 10000
-and salary < 14000
+where salary  between 10000 and 14000;
 ORDER by salary DESC;
+
 
 /*6번
 부서번호가 10, 90, 100 인 직원의 이름, 월급, 입사일, 부서번호를 나타내시오
