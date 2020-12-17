@@ -1,172 +1,103 @@
-SELECT * 
-from departments;
 
+/*1번
+전체직원의 다음 정보를 조회하세요. 정렬은 입사일(hire_date)의 
+올림차순(ASC)으로 가장 선임부터 출력이 되도록 하세요. 
+이름(first_name last_name),  월급(salary),
+전화번호(phone_number), 입사일(hire_date) 순서이고 
+“이름”, “월급”, “전화번호”, “입사일” 로 컬럼이름을 대체해 보세요.
+*/
+SELECT
+        first_name 이름,
+        salary 월급,
+        phone_number 전화번호,
+        hire_date 입사일
+FROM employees
+ORDER by hire_date asc;
 
-SELECT  employee_id, 
+/*2번
+업무(jobs)별로 업무이름(job_title)과 
+최고월급(max_salary)을 월급의 내림차순(DESC)로 정렬하세요.
+*/
+SELECT
+        job_title 업무,
+        max_salary 최고월급    
+FROM jobs
+ORDER by max_salary DESC;
+
+/*3번
+담당 매니저가 배정되어있으나 커미션비율이 없고, 월급이 3000초과인 직원의 이름, 매니저아이디, 커미션 비율, 월급 을 출력하세요.
+*/
+SELECT
         first_name,
-        last_name 
-from employees;
-
-SELECT first_name,
-       last_name,
-       salary,
-       phone_number,
-       hire_date
-from employees;
-
-select employee_id as empno,
-       first_name "f-name",
-       salary
-from employees;
-
-select employee_id as empno,
-       first_name "f-name",
-       salary "연봉"
-from employees;
-
-select first_name "이름",
-       phone_number "전화번호",
-       hire_date "입사일",
-       salary "급여"
-from employees;
-
-select first_name "이름",
-       last_name "성",
-       salary "급여",
-       phone_number "전화번호",
-       job_id "이메일",
-       hire_date "입사일"
-from employees;
-
-select employee_id "사원번호",
-       first_name "이름",
-       last_name "성",
-       salary "급여",
-       phone_number "전화번호",
-       job_id "이메일",
-       hire_date "입사일"
-from employees;
-
-select * from employees;
-
-select employee_id "사원번호",
-       first_name "이름",
-       last_name "성",
-       salary "급여",
-       phone_number "전화번호",
-       email "이메일",
-       hire_date "입사일"
-from employees;
-
-select 
-       first_name ||' '|| last_name 이름
-from employees;
-
-select  first_name,
-        salary,
-        salary*12,
-        (salary+300)*12
-from EMPLOYEES;
-
-select 
-       first_name
-from employees
-where salary > 15000;
-
-select 
-       first_name,
-       salary
-from employees
-where salary > 15000;
-
-select 
-       first_name,
-       salary
-from employees
-where salary >= 15000;
-
-select 
-       first_name,
-       hire_date
-from employees
-where hire_date >= '07/01/01';
-
-
-select first_name
-from employees
-where first_name >= 'lex';
-
-
-select 
-       first_name
-
-from employees
-where first_name >= 'Lex';
-
-select 
-       first_name,
-       salary
-from employees
-where first_name >= 'Lex';
-
-select 
-       first_name,
-       salary
-from employees
-where first_name = 'Lex';
-
-select 
-       first_name,
-       salary
-from employees
-where first_name = 'Le*';
-
-select 
-       first_name,
-       salary
-from employees
-where first_name = 'Le?';
-
-select * 
-from employees
-ORDER by salary desc;
-
-select * 
-from employees
-ORDER by first_name desc;
-
-
-select  first_name,
+        manager_id,
+        commission_pct,
         salary
+FROM employees
+where manager_id is not null
+and commission_pct is null
+and salary > 3000;
+/*4번
+최고월급(max_salary)이 10000 이상인 업무의 이름(job_title)
+과 최고월급(max_salary)을 최고월급의(max_salary) 
+내림차순(DESC)로 정렬하여 출력하세요.    
+*/
+SELECT
+        job_title 업무,
+        max_salary 최고월급    
+FROM jobs
+WHERE max_salary > 10000
+ORDER by max_salary DESC;
 
-from employees
-WHERE salary >= 9000
-ORDER by first_name desc;
+/*5번
+월급이 14000 미만 10000 이상인 직원의 이름(first_name),
+월급, 커미션퍼센트 를  월급순(내림차순) 출력하세오.
+단 커미션퍼센트 가 null 이면 0 으로 나타내시오
+*/
+SELECT
+        first_name 이름,
+        salary 월급,
+        NVL(commission_pct,0) 커미션퍼센트
+FROM employees
+where salary >= 10000
+and salary < 14000
+ORDER by salary DESC;
+
+/*6번
+부서번호가 10, 90, 100 인 직원의 이름, 월급, 입사일, 부서번호를 나타내시오
+입사일은 1977-12 와 같이 표시하시오
+*/
+SELECT
+       first_name 이름,
+       salary 월급,
+       to_char(hire_date,'YYYY-MM')입사일,
+       department_id 부서
+FROM employees
+where department_id in (10 , 90 , 100);
+
+/*7번
+이름(first_name)에 S 또는 s 가 들어가는 직원의 이름, 월급을 나타내시오
+*/
+SELECT
+       first_name 이름,
+       salary 월급
+FROM employees
+where first_name like'%s%' or first_name like '%S%';
+
+/*
+8번
+전체 부서를 출력하려고 합니다. 순서는 부서이름이 긴 순서대로 출력해 보세오.
+*/
+SELECT
+       NVL(department_id ,0)부서
+FROM employees
+ORDER by LENGTH(department_id);
+/*9번.
+정확하지 않지만, 지사가 있을 것으로 예상되는 나라들을 나라이름을 대문자로 출력하고
+올림차순(ASC)으로 정렬해 보세오.
+*/
+SELECT
+      upper(country_name)
+FROM COUNTRIES;
 
 
-select  *
-from employees
-WHERE salary >= 9000
-ORDER by first_name desc;
-select  department_id 팀,
-        salary 급여,
-        last_name 이름
-from employees
-WHERE salary >= 1000
-ORDER by department_id asc;
 
-
-select  department_id,
-        salary,
-        first_name
-from employees
-ORDER by department_id asc, salary desc;
-
-
-select first_name||''||last_name
-from employees;
-select first_name||'하이드'||last_name
-
-from employees;
-select first_name||' ''하이드'' '||last_name
-from employees;
