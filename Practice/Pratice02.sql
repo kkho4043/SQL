@@ -111,17 +111,10 @@ ORDER by AVG(salary) DESC;
 
 select 
         hire_date,
-        case when TO_DATE(hire_date,'YY.MM.DD') > TO_DATE(04.12.31,'YY.MM.DD') then '창립맴버'
-             when TO_DATE(hire_date,'YY.MM.DD') > 03/12/31 then '03년입사'
-             when TO_DATE(hire_date,'YY.MM.DD') > 02/12/31 then '04년입사'
+        case when TO_DATE(hire_date,'YY.MM.DD') < TO_DATE(20021231) then '창립맴버'
+             when TO_DATE(hire_date,'YY.MM.DD') < TO_DATE(20031231) then '03년입사'
+             when TO_DATE(hire_date,'YY.MM.DD') < TO_DATE(20041231) then '04년입사'
              else '상장이후입사'
-        end optDate
-from employees;
-
-select
-        hire_date,
-WHERE TO_DATE(hire_date,'YYMMDD') > TO_DATE(041231,'YYMMDD')
-from employees;
-
-
-
+        end "optDate"
+from employees
+order by hire_date asc;

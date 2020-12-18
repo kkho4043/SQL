@@ -91,13 +91,29 @@ SELECT
        NVL(department_id ,0)부서
 FROM employees
 ORDER by LENGTH(department_id);
+
+
 /*9번.
 정확하지 않지만, 지사가 있을 것으로 예상되는 나라들을 나라이름을 대문자로 출력하고
 올림차순(ASC)으로 정렬해 보세오.
 */
 SELECT
-      upper(country_name)
-FROM COUNTRIES;
+      upper(country_name) 나라
+FROM COUNTRIES
+order by country_name ASC;
+
+/*10번
+입사일이 03/12/31 일 이전 입사한 직원의 이름, 월급, 전화 번호, 입사일을 출력하세요
+전화번호는 545-343-3433 과 같은 형태로 출력하시오.
+*/
+SELECT
+        first_name 이름,
+        salary 월급,
+        REPLACE (phone_number, '.', '-'),
+        
+        hire_date 입사일
+FROM EMPLOYEES
+WHERE hire_date <('03/12/31');
 
 
 
