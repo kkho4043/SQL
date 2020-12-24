@@ -1,7 +1,7 @@
 drop table book;
 drop table author;
---bookÀÌ author¿¡ id¸¦ ¿Ü·ÊÅ°·Î »ç¿ëÇÏ±â ¶§¹®¿¡ authorºÎÅÍ ¸¸µç´Ù.
---author Å×ÀÌºí »ı¼º======================================= 
+--bookì´ authorì— idë¥¼ ì™¸ë¡€í‚¤ë¡œ ì‚¬ìš©í•˜ê¸° ë•Œë¬¸ì— authorë¶€í„° ë§Œë“ ë‹¤.
+--author í…Œì´ë¸” ìƒì„±======================================= 
 CREATE TABLE author (
   author_id	NUMBER(10) ,
   author_name	VARCHAR2(100), 	
@@ -10,7 +10,7 @@ CREATE TABLE author (
 );
 
 
---book Å×ÀÌºí »ı¼º=========================================
+--book í…Œì´ë¸” ìƒì„±=========================================
 CREATE TABLE book(
     book_id number(10),
     title varchar2(100),
@@ -22,59 +22,59 @@ CREATE TABLE book(
     references author(author_id)
 );
 
---author ½ÃÄö½º »ı¼º======================================= 
+--author ì‹œí€€ìŠ¤ ìƒì„±======================================= 
 drop SEQUENCE seq_author_id;
 create SEQUENCE seq_author_id increment by 1 start with 1;
---author µ¥ÀÌÅÍ insert=======================================
+--author ë°ì´í„° insert=======================================
 insert into author(author_id, author_name , author_desc)
-values (seq_author_id.nextval, 'ÀÌ¹®¿­' ,'°æºÏ ¿µ¾ç');
-
-insert into author(author_id, author_name , author_desc)
-values (seq_author_id.nextval, '¹Ú°æ¸®' ,'°æ»ó³²µµ Åë¿µ');
+values (seq_author_id.nextval, 'ì´ë¬¸ì—´' ,'ê²½ë¶ ì˜ì–‘');
 
 insert into author(author_id, author_name , author_desc)
-values (seq_author_id.nextval, 'À¯½Ã¹Î' ,'17´ë ±¹È¸ÀÇ¿ø');
+values (seq_author_id.nextval, 'ë°•ê²½ë¦¬' ,'ê²½ìƒë‚¨ë„ í†µì˜');
 
 insert into author(author_id, author_name , author_desc)
-values (seq_author_id.nextval, '±â¾È84' ,'±â¾Èµ¿¿¡¼­ »ê 84³â»ı');
+values (seq_author_id.nextval, 'ìœ ì‹œë¯¼' ,'17ëŒ€ êµ­íšŒì˜ì›');
 
 insert into author(author_id, author_name , author_desc)
-values (seq_author_id.nextval, '°­Ç®' ,'¿Â¶óÀÎ ¸¸È­°¡ 1¼¼´ë');
+values (seq_author_id.nextval, 'ê¸°ì•ˆ84' ,'ê¸°ì•ˆë™ì—ì„œ ì‚° 84ë…„ìƒ');
 
 insert into author(author_id, author_name , author_desc)
-values (seq_author_id.nextval, '±è¿µÇÏ' ,'¾Ë¾µ½ÅÂü');
+values (seq_author_id.nextval, 'ê°•í’€' ,'ì˜¨ë¼ì¸ ë§Œí™”ê°€ 1ì„¸ëŒ€');
+
+insert into author(author_id, author_name , author_desc)
+values (seq_author_id.nextval, 'ê¹€ì˜í•˜' ,'ì•Œì“¸ì‹ ì°¸');
 
 
---book ½ÃÄö½º »ı¼º=========================================
+--book ì‹œí€€ìŠ¤ ìƒì„±=========================================
 drop SEQUENCE seq_book_id;
 create SEQUENCE seq_book_id increment by 1 start with 1;
 
 --book insert=========================================
 insert into book(book_id,title,pubs,pub_date,author_id)
-values (seq_book_id.nextval,'¿ì¸®µéÀÇ ÀÏ±×·¯Áø¿µ¿õ','´Ù¸²','1998-02-02', 1);
+values (seq_book_id.nextval,'ìš°ë¦¬ë“¤ì˜ ì¼ê·¸ëŸ¬ì§„ì˜ì›…','ë‹¤ë¦¼','1998-02-02', 1);
 
 insert into book(book_id,title,pubs,pub_date,author_id)
-values (seq_book_id.nextval,'»ï±¹Áö','¸¸Èï»ç','2002-03-01',1);
+values (seq_book_id.nextval,'ì‚¼êµ­ì§€','ë§Œí¥ì‚¬','2002-03-01',1);
 
 insert into book(book_id,title,pubs,pub_date,author_id)
-values (seq_book_id.nextval,'ÅäÁö','¸¶·Î´Ï¿¡ºÏ½º','2012-08-15',2);
+values (seq_book_id.nextval,'í† ì§€','ë§ˆë¡œë‹ˆì—ë¶ìŠ¤','2012-08-15',2);
 
 insert into book(book_id,title,pubs,pub_date,author_id)
-values (seq_book_id.nextval, 'À¯½Ã¹ÎÀÇ ±Û¾²±â Æ¯°­','»ı°¢ÀÇ±æ','015-04-01',3);
+values (seq_book_id.nextval, 'ìœ ì‹œë¯¼ì˜ ê¸€ì“°ê¸° íŠ¹ê°•','ìƒê°ì˜ê¸¸','015-04-01',3);
 
 insert into book(book_id,title,pubs,pub_date,author_id)
-values (seq_book_id.nextval,'ÆĞ¼Ç¿Õ','Áß¾ÓºÏ½º(books)','2012-02-22',4);
+values (seq_book_id.nextval,'íŒ¨ì…˜ì™•','ì¤‘ì•™ë¶ìŠ¤(books)','2012-02-22',4);
 
 insert into book(book_id,title,pubs,pub_date,author_id)
-values (seq_book_id.nextval,'¼øÁ¤¸¸È­','Àç¹ÌÁÖÀÇ','2011-08-03',5);
+values (seq_book_id.nextval,'ìˆœì •ë§Œí™”','ì¬ë¯¸ì£¼ì˜','2011-08-03',5);
 
 insert into book(book_id,title,pubs,pub_date,author_id)
-values (seq_book_id.nextval,'¿ÀÁ÷µÎ»ç¶÷','¹®ÇĞµ¿³×','2017-05-04',6);
+values (seq_book_id.nextval,'ì˜¤ì§ë‘ì‚¬ëŒ','ë¬¸í•™ë™ë„¤','2017-05-04',6);
 
 insert into book(book_id,title,pubs,pub_date,author_id)
-values (seq_book_id.nextval,'26³â','Àç¹ÌÁÖÀÇ','2012-02-04',5);
+values (seq_book_id.nextval,'26ë…„','ì¬ë¯¸ì£¼ì˜','2012-02-04',5);
 
---Ãâ·Â
+--ì¶œë ¥
 select 
     b.book_id,
     b.title,
@@ -86,17 +86,17 @@ select
 from book b,author a
 where b.author_id = a.author_id;
 
---°­Ç® Á¤º¸ º¯°æ
+--ê°•í’€ ì •ë³´ ë³€ê²½
 update author
-set author_desc = '¼­¿ïÆ¯º°½Ã'
-where author_name = '°­Ç®';
---author¿¡¼­ ±â¾È84 °ª »èÁ¦ (¾È‰Î) ÆĞ¼Ç¿ÕÀ» »èÁ¦ÇÏ°í ÇÏ±â.
+set author_desc = 'ì„œìš¸íŠ¹ë³„ì‹œ'
+where author_name = 'ê°•í’€';
+--authorì—ì„œ ê¸°ì•ˆ84 ê°’ ì‚­ì œ (ì•ˆÂ‰) íŒ¨ì…˜ì™•ì„ ì‚­ì œí•˜ê³  í•˜ê¸°.
 delete from book
 where author_id = 4;
 delete from author
 where author_id = 4;
 
---Ãâ·Â
+--ì¶œë ¥
 select 
     b.book_id,
     b.title,
