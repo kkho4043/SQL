@@ -1,18 +1,9 @@
-alter table book add(pubs varchar2(50)); --컬람 추가
-alter table book modify(pubs varchar2(100)); --컬럼 수정
-alter table book rename column title to subject; -- 내용 이름 변경
-alter table book drop (author); --컬럼 삭제
-rename book to oracle; --테이블명 수정
-DROP TABLE book; --테이블 제거
-TRUNCATE TABLE article; --테이블의 모든 로우 제거
-
 CREATE TABLE author (--pk만사용해 테이블 만들기
   author_id	NUMBER(10) ,
   author_name	VARCHAR2(100), 	
   author_desc	VARCHAR2(500),
   PRIMARY 	KEY(author_id)	
 );
-
 
 CREATE TABLE book(--pk값과 fk값을 지정해 테이블 만들기
     book_id number(10) ,
@@ -25,6 +16,14 @@ CREATE TABLE book(--pk값과 fk값을 지정해 테이블 만들기
     references author(author_id)
     -- 외래키 다른 테이블과 연결함 다른데이블에 없는 값은 사용 할수없다
 );
+
+alter table book add(pubs varchar2(50)); --컬람 추가
+alter table book modify(pubs varchar2(100)); --컬럼 수정
+alter table book rename column title to subject; -- 컬럼 이름 변경
+alter table book drop (author); --컬럼 삭제
+rename book to oracle; --테이블명 수정
+DROP TABLE book; --테이블 제거
+TRUNCATE TABLE article; --테이블의 모든 로우 제거
 
 --묵시적 값 집어넣기
 insert into author values(2,'이문열');
