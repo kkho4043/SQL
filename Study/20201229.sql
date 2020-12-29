@@ -2,6 +2,9 @@ SELECT *
 from author;
 
 SELECT *
+from author;
+
+SELECT *
 from book;
 
 Insert into author
