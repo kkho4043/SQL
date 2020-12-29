@@ -1,6 +1,6 @@
 SELECT *
 from author;
- 
+
 SELECT *
 from book;
 
